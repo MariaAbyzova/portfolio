@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio by Maria Abyzova</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">all samples</a></li>
+							<li class="active"><a href="longread.html">longread</a></li>
+                            <li><a href="user_guide.html">user instruction</a></li>
+                            <li><a href="user_manual.html">user guide sample</a></li>
+                            <li><a href="user_documentation.html">user documentation</a></li>
+                            <li><a href="blogpost.html">blogpost</a></li>
+						</ul>		
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">					
+									<h1>The future of serverless architecture</h1>
+									<p>Rethinking the logic of back-end and pricing,<br />
+									serverless technology forms new patterns of building apps.</p>
+								</header>
+								<div class="image main"><img src="images/serverless.jpg" alt="" /></div>
+                                <blockquote>Serverless hype has captivated the horizon of client-server applications industry. The wave started with AWS Lambda being released in 2014 and made a splash in 2016 when Microsoft Azure Functions and Google Cloud Functions followed Amazon, not mentioning numerous minor players at the market apart from the Big Three.  Let’s explore the essence of the technology that earned its glow.</blockquote>
+								
+                                <h3>What is serverless?</h3>
+                                <p>Obviously, ‘serverless’ is rather a marketing term, than literary a thin air invention. It refers to the relationship model where cloud computing infrastructure provider takes care of running and provisioning servers or virtual machines letting us focus on production. Though servers are still involved, developers think less about underlying resources. This is a broad sense of serverless computing notion.</p>
+								<h3>Architecture peculiarities</h3>
+                                <p><span class="image right"><img src="images/serverless-backend.jpg" alt="" /></span>Talking about serverless architecture we narrow down understanding of the term mainly to Function-as-a-Service and exclude prior generations - BaaS and PaaS solutions. They often imply a deployment of monolith-build applications to third-parties’ cloud instances as a common practice. Meanwhile, serverless FaaS suggests a significant change in application design, operation logic, and model of deployment. In particular, FaaS is event-driven. That means instead of deploying VMs or services of traditional architecture, it requires the deployment of <i>an application constructed as a bunch of individual functions.</i> Back-end code of applications runs in stateless computer containers. When it is triggered by an event, a certain called function gets executed. In ephemeral containers, it lasts only for one invocation. When execution is over, the vendor can tear it down. This isolation of independent logical pieces of functionality shapes how we build serverless applications and, by the way, perfectly matches the microservice design pattern. </p>
+                                <p>Microservices lend themselves well to serverless architecture because we can unbundle isolated modules, decouple tasks and build an application of multiple connected services. 
+Within such microservice architecture, every individual component serves for a single purpose, but separated functions still work together. FaaS allows deploying and running these products made of autonomous services with least efforts of a development team and at less cost.</p>
+                                <h3>Pricing changes design patterns</h3>
+                                <p>Serverless billing mode is a game changer that makes us build IT systems differently. As mentioned earlier, our custom code is deployed to the containers created and administered by the vendor. The trick is that we do not pay for written functions waiting there idly, unless they are woken up and process events. Hence we are only charged when events are handled. <i>We pay for a number of requests and time for processing them</i>, but not for a number of VMs or servers. Capacity units are not pre-purchased in advance as within traditional flow. Scaling happens on demand and it is managed on the provider’s side. Serverless pricing introduces completely different logic and it affects architectural decisions inevitably.</p>
+                                <p>Paying for utilization twists things upside-down. For instance, the pay-as-you-go model gives us quick feedback. We build architecture and find out how economically justified it is as soon as we get the FaaS provider’s invoice at the end of the month. No need to wait for months of production, until it’s too late to make changes in infrastructure. We become dynamic: check the quality of the decisions fast and mitigate poor consequences at the spot relying on the quick feedback cycle. And another thing, paying for actual use we become free from a major constraint in computing - saving hosting cost. It is no longer applicable. When we unlearn this limitation, surprising patterns of building and operating serverless applications emerge.</p>
+                                <h3>FaaS drawbacks influence building apps</h3>
+                                <p>As we don’t have to worry about exceeding capacity and optimizing systems for reserved resources, we start worrying about other things. Serverless computing has its flip side as every technology does. Want to know the weaknesses of FaaS? Let’s dive in. First, the limit of execution duration is 5 minutes for AWS Lambda. Competitors are not far away as well. Second, the benefit of convenient automatic scaling has its price - restriction in state. It’s impossible to persist the state of a function between executions because invocations don’t run in the same container. Besides, when a function hasn’t been triggered for a while it leads to cold starts, response latency, and accordingly slower performance. So if due to its nature our app does not fit the limitation in execution duration and restriction in state, it may cause complicated and expensive workarounds. </p>
+                                <p>The other type of concerns is devoted to the role of the third party. What if a provider will make unexpected changes in functionality, limits or pricing? That is a reasonable question since we are giving up a part of control over businesses and products to the platform. We are getting scared about the future, in particular, the necessity of moving to another host. Due to the lack of unified standards over the industry, migration might require significant rewriting. Security limitations are also connected to the vendor’s control, as we have to rely on a cloud host security and adjust to the functionality of a certain platform. These drawbacks are the prospects for growth in the serverless world. Probably multi-cloud or hybrid architectures will become our responses to these challenges in the future.</p>
+                                <h3>What the future holds?</h3>
+                                <p>It is too early to say if we’ll be able to run an application on multiple FaaS platforms and/or on-premises at the same time getting maximum advantage of different operational capabilities. But it is already clear that relatively new serverless technology is changing software architecture ecosystem. There is more work to be done. Best practices for serverless apps building and deployment are still to be discovered and established. We collectively as an industry are mastering not only ways of building serverless apps but also styles of managing programmers’ teams. FaaS technology shortens the time to market and this accelerated speed of production challenges decision making and leadership patterns in the tech sector. Mike Roberts and John Chapin in their book “What is serverless?” predict that “companies will change how they work in order to make the most of Serverless”.</p>
+                                <h3>Final thoughts</h3>
+                                <p>Advantages of serverless make it a competitive solution on the market. FaaS unified offerings save time, money, and work of developers. Due to such strong benefits, tech companies adopt this technology and start building their applications in a new way. They give up traditional monolith design pattern and architect apps as a set of separate functions tired together. This model of application design is also determined by the serverless pricing principle and technical limitations. Shared learning across the field and technology maturing will help us to overcome its drawbacks. All in all, serverless computing has the potential to provoke a significant mindset shift in how we organize the work of both our apps and our companies.</p>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p> 03113, Lagerna Street #40, Kyiv, Ukraine</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>maria.abyzova@gmail.com</p>
+							</section>
+							<section>
+								<h3>Skype</h3>
+								<p>zetapegasi</p>
+							</section>
+						</section>						
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Maria Abyzova</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

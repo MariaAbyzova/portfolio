@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio by Maria Abyzova</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">all samples</a></li>
+							<li><a href="longread.html">longread</a></li>
+                            <li><a href="user_guide.html">user instruction</a></li>
+                            <li><a href="user_manual.html">user guide sample</a></li>
+                            <li><a href="user_documentation.html">user documentation</a></li>
+                            <li class="active"><a href="blogpost.html">blogpost</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>Changed Block Tracking vs Resilient Change Tracking</h1>
+									<p>What to consider?</p>
+								</header>
+								<div class="image main"><img src="images/VS.jpg" alt="" /></div>
+                                <blockquote>VMware and Hyper-V apply different incremental backup technologies for virtual machines. Compare reliability and convenience of CBT and RCT!</blockquote>
+                                <p class="c0 c1"><span class="c6"></span></p><p class="c0"><span class="c3">In the world of virtualization full backup is used to prevent data loss in case of emergencies. As long as full backup requires much time and storage, it usually takes place in the beginning and then is followed by incremental backups. They save resources by backing up only those blocks of VMs that have been changed since the last backup or at a certain point in time. </span>
+                                </p><p class="c0 c1"><span class="c3"></span></p><p class="c0"><span class="c3">How does the backup product detect changed blocks in VMs? Here incremental backup technologies come in handy, such as Changed Block Tracking (CBT) and Resilient Change Tracking (RCT). CBT was introduced by VMware for vSphere in 2011, whereas RCT was released by Microsoft for Hyper-V in 2016. Both track changes in virtual machines and tell this information to a backup product, both make backup vendors&rsquo; work faster and less complicated, as backup applications don&rsquo;t need to bother with developing change tracking solutions on their own. That&rsquo;s what CBT and RCT have in common, but what are the peculiarities of these technologies?</span></p>
+                                <p class="c0 c1"><span class="c3"></span></p><p class="c0"><span class="c3">Let&rsquo;s take a closer look at Changed Block Tracking and Resilient Change Tracking mechanisms. CBT scans blocks of VMs, marks changed blocks and stores data changes in a &ldquo;-ctk.vmdk&rdquo; file which contains very granular information, because it is based on bitmaps. But in case of a sudden shutdown, power failure or VM migration to another host the file will be lost and a backup product won&rsquo;t be able to reference it. As for RCT, it eliminates the risk of data loss in unforeseen circumstances by creating 3 files. The first one &ldquo;.vhdx&rdquo; is stored in memory, while &ldquo;.mrt&rdquo; and &ldquo;.rct&rdquo; are saved on disks. It ensures that if crash, power loss or migration happens, files living on disks are still available and changed blocks can be used or reconstructed for new incremental backup. In other words, Microsoft filled in a gap in technology when brought RTC to the field of virtualization.</span></p>
+                                <p class="c0 c1"><span class="c3"></span></p><p class="c0"><span class="c3">There is another significant difference. In contrast to Changed Block Tracking, RCT is a native feature. Data protection solutions have to work with vStorage APIs and apply VMkernel filter drivers to access the CBT feature. With Resilient Change Tracking there is no need in a proprietary method because RCT is a native functionality for Windows Server 2016. Built-in features work smoother and require less attention than third-party filters.</span></p>
+                                <p class="c0 c1"><span class="c3"></span></p><p class="c0"><span class="c3">Block-level change tracking technologies are essential for efficient incremental backups. Resilient Change Tracking is a younger solution on the market, but it appears to be more reliable in emergency situations and more convenient for data protection products. In comparison to Change Block Tracking, it leaves proprietary filter drives and data loss of changed blocks in the past.</span></p><p class="c0 c1"><span class="c7"></span></p>
+								
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p> 03113, Lagerna Street #40, Kyiv, Ukraine</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>maria.abyzova@gmail.com</p>
+							</section>
+							<section>
+								<h3>Skype</h3>
+								<p>zetapegasi</p>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Maria Abyzova</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
