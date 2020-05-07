@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio by Maria Abyzova</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">all samples</a></li>
+							<li><a href="longread.html">longread</a></li>
+                            <li class="active"><a href="application.html">How to</a> </li>
+                            <li><a href="configkeys.html">Guide</a> </li>
+                            <li><a href="user_guide.html">integration</a></li>
+                            <li><a href="user_manual.html">Q&amp;A</a></li>
+                            <li><a href="user_documentation.html">user doc</a></li>
+                            <li><a href="blogpost.html">blogpost</a></li>
+						</ul>
+						
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>How to create <br>and test Application<br> in Ajustee</h1>
+								</header>
+
+								<!-- Box -->
+									<div class="box">
+                        <p>The article explains the concepts of application and whitelisting, clarifies their connection. Instruction shows how to create an Application, apply access restrictions, generate Application ID, and finally test the created app by getting a response via "App Debug" feature. Ones you've checked that REST API works well and what&nbsp;configuration key values the&nbsp;app can read, the update of application settings might be needed. The article provides guidance on editing and deleting apps.</p>
+                                    </div>
+<p>
+	<strong>IN THIS ARTICLE</strong>
+</p>
+<ul>
+	<li><a href="#app1">Application</a></li>
+	<li><a href="#app2">Whitelisting</a></li>
+	<li><a href="#app3">How to create Application &amp; set Whitelists</a></li>
+	<li><a href="#app4">Viewing Application ID</a> </li>
+	<li><a href="#app5">Testing Application ID and Whitelists via App Debug</a></li>
+	<li><a href="#app6">Editing Application</a></li>
+	<li><a href="#app7">Deleting Application</a></li>
+</ul>
+<p>
+	<strong>Rights</strong>:&nbsp;Admin and PowerUser can&nbsp;create, update, delete applications. App ID can be viewed by all roles.
+</p>
+<h2 id="app1"> Application</h2>
+<p>
+	 In Ajustee system&nbsp;Application entity represents programs that consume configuration keys values of your product. Apps mostly receive product configuration values via REST API or platform clients, though in some scenarios applications can send&nbsp;values back&nbsp;and modify them so. Examples of applications may be a microservice, a web client of your product, a SPA. If Google is a tenant, Gmail product is a project, then applications will be&nbsp;iOS app, Android app, Web client.&nbsp;
+</p>
+<p>
+	<strong>Note</strong>: In Ajustee, Application is always created within a certain environment of a project and belongs to this env.&nbsp;Thus one application can get access to the values of only one environment. Such separation ensures security and prevents the kind of cases when the test app reaches out to production data.&nbsp;
+</p>
+<h2 id="app2"> Whitelisting&nbsp;</h2>
+<p>
+	 Whitelisting is a security practice&nbsp;to limit and control access of an application to your data in Ajustee.&nbsp;The more applications you create, the more granular access to the key values you have. Whitelisting gets&nbsp;segmentation of access to&nbsp;configurations within the env even further.&nbsp;
+</p>
+<p>
+	 For example, imagine you have a project with all the settings in place. You have client-side logic, server-side logic and a client-side SPA application that executes within the user browser. So any advanced user will be able to track an application ID to access the data. With whitelisting in place, you're able to filter application access only to SPA specific values so backend related settings a safe.&nbsp;
+</p>
+<p>
+	 Application calls can be restricted by 4 settings:
+</p>
+<ul>
+	<li><strong>Namespaces whitelist</strong> narrows access to a&nbsp;particular set of keys instead of the entire project keys.&nbsp;</li>
+	<li><strong>IP address whitelist</strong> allows responses&nbsp;only to the requests from trusted IPs that were added to the list. Calls that&nbsp;come from another address get 403 Forbidden status code.</li>
+	<li><strong>IP address blacklist</strong>&nbsp;blocks provided addresses from obtaining and retrieving your data.&nbsp;Calls that&nbsp;come from these&nbsp;addresses get 403 Forbidden status code.</li>
+	<li><strong>HTTP referrers</strong>&nbsp;are approved URLs where REST API requests may come from, others will be ignored and receive 403 status.</li>
+</ul>
+<hr>
+<h2 id="app3"> How to create Application &amp; set Whitelists</h2>
+                                <div class="box">
+										<span class="image fit"><img src="images/app1.png" alt="" /></span>
+									</div>
+<dl>
+	<dt>
+	<h5>1. Open Application page</h5>
+	</dt>
+	<dd>
+	<p>
+		 Click Projects&nbsp;in the left navigation menu. In the expanded list, select the project&nbsp;you need. Its sub-menu is now available. Choose the Applications tab. The grid might be empty at the beginning.&nbsp;
+	</p>
+	</dd>
+	<dt>
+	<h5>2. Select Environment</h5> 
+	</dt>
+	<dd>
+	<p>
+		 As every App belongs to only one env, first use Select environment filter and choose one instance from the dropdown list.
+	</p>
+	</dd>
+	<dt>
+	<h5>3. Click "Add new Application" button</h5>
+	</dt>
+	<dd>
+	<p>
+		 Once the Environment is selected the button appears in the upper right corner of the Application page.
+	</p>
+	</dd>
+	<dt>
+	<h5 id="appform"> 4. Fill in "Create application for environment" form</h5>
+	</dt>
+	<dd>
+	<p>
+		 Name the App. Set permissions and optionally restrict application calls with white or blacklists.
+	</p>
+	<div class="box">
+				<span class="image fit"><img src="images/app2.png" alt="" /></span>
+				</div>
+	</dd>
+	<dl>
+		<dt>
+		<h5>A. Give Application a name</h5>
+		</dt>
+		<dd>
+		<p>
+			 It should be unique within an env, not less than 3 symbols. In this form, it is an only required box, enough to create the app with full access.
+		</p>
+		</dd>
+		<dt>
+		<h5>B. Allow or forbid the application to modify environment configuration key values</h5> 
+		</dt>
+		<dd>
+		<p>
+			 Modification setting is a way to control if an application can update existing environment keys values:
+		</p>
+		<ul>
+			<li><strong>Forbid</strong> status is the default. It means when an application tries to update values it gets 403 status code.</li>
+			<li><strong>Allow</strong> status supports a REST API method, so application can change the <strong>environment key value only</strong>. Apply it when&nbsp;the configuration values of your project are auto-generated by external tools or processes. For example, the SNS channel was generated by a pipeline and software needs to know how to reach it out.</li>
+		</ul>
+		</dd>
+		<dt>
+		<h5>C. Namespaces whitelist</h5>
+		</dt>
+		<dd>
+		<p>
+			 Only subgroups of keys under the provided namespace will be available to this app. Listed namespaces can be several levels deep.&nbsp;For example, there is a project with the configurations 
+			<em style="background-color: initial;">"</em><em style="background-color: initial;">UI/Theme/Color"</em>, <em style="background-color: initial;">"</em><em style="background-color: initial;">UI/Theme/Font"</em>, <em style="background-color: initial;">"</em><em style="background-color: initial;">UI/FeatureOne/Enabled"</em>. Application with <em style="background-color: initial;">"</em><em style="background-color: initial;">UI/Theme"</em>&nbsp;whitelist won't have access to the "<em style="background-color: initial;">UI/FeatureOne/Enabled"</em>&nbsp;key and any other keys besides all keys within <em style="background-color: initial;">"</em><em style="background-color: initial;">UI/Theme"</em>&nbsp;namespace.
+		</p>
+		</dd>
+		<dd>
+		<p>
+			<strong>Tip:</strong>&nbsp;Make sure&nbsp;namespaces in the whitelist are spelled exactly as in the Keypath names. The field is Case sensitive.&nbsp;&nbsp;
+		</p>
+		</dd>
+		<dt>
+		<h5>D. IP Whitelist</h5> 
+		</dt>
+		<dd>
+		<p>
+			 Only calls from the provided IPs will be responded to.&nbsp;Separate listed items with&nbsp;a comma or space. Possible formats:
+		</p>
+		<ul>
+			<li><strong>single IP</strong>. For example, 19.13.45.203, 10.0.0.56, etc.&nbsp;</li>
+			<li><strong>range of IPs</strong>. Replace the range segment of the address with the asterisk (*).&nbsp;&nbsp;For instance, 19.13.45.*&nbsp;is a valid IP address sequence from 19.13.45.0&nbsp;to 19.13.45.255. Another example, 10.0.*.*&nbsp;is a range from 10.0.0.0&nbsp;to 10.0.255.255.&nbsp;</li>
+		</ul>
+		</dd>
+		<dt>
+		<h5>E. IP Blacklist</h5>
+		</dt>
+		<dd>
+		<p>
+			 Calls from addresses entered in this box won't be satisfied.&nbsp;
+		</p>
+		</dd>
+		<dd>
+		<p>
+			 Separate listed items with a&nbsp;comma or space.&nbsp;Possible formats are the same as for IP whitelist.&nbsp;
+		</p>
+		</dd>
+		<dt>
+		<h5>F. HTTP referrers</h5>
+		</dt>
+		<dd>
+		<p>
+			 Only requests from URLs you set in this box will be accepted.&nbsp;
+		</p>
+		</dd>
+		<dd>
+		<p>
+			<strong>Recommended format</strong>: Use the&nbsp;asterisk (*) to make a URL mask and&nbsp;ignore other URL parts in REST API requests. For example,&nbsp; <strong>*example.com/data*</strong> is a&nbsp;URL mask provided in the "HTTP referrers" box. It&nbsp;allows REST API calls from "https://test.<strong style="background-color: initial;">example.com/data</strong>/contracts/234" and "https://www.<strong style="background-color: initial;">example.com/data</strong>/awards/pell/2010?output=preview". But calls from "https://store.<strong style="background-color: initial;">example.com/contracts</strong>/90" or "http://<strong style="background-color: initial;">testorg.uri"</strong>&nbsp;get a 403 Forbidden status code.
+		</p>
+		</dd>
+	</dl>
+	<dt>
+	<h5>5. Click "Update+" button down the form</h5>
+	</dt>
+	<dd>
+	</dd>
+</dl>
+<p>
+	 The new Application has been created and now you can see it in the grid. The application&nbsp;creation record is made in the Audit log of the project&nbsp;and can&nbsp;be viewed in Audit history&nbsp;on&nbsp;Key details panel as well.&nbsp;The App ID has been generated.&nbsp;
+</p>
+<hr>
+<h2 id="app4">Viewing&nbsp; Application ID</h2>
+<p>
+	 Find app ID to use it in your REST API and client's calls.
+</p>
+<ol>
+    <li>Open <strong>Application page</strong> of the project.&nbsp;</li>
+	<li>View the ID&nbsp; <strong>in the second column of the grid</strong>. Hold the left-click on the&nbsp; <strong>eye icon </strong>to see the sensitive data.
+    </li>
+	<li>
+	To copy the ID click&nbsp;the application in the grid and get to the&nbsp; 
+	<strong>App details panel</strong> on the right. There is a 
+        <strong>copy icon</strong>.&nbsp;</li>
+</ol>
+<div class="box">
+<span class="image fit"><img src="images/app3.png" alt="" /></span>
+</div>
+<h2 id="app5">Testing Application ID and Whitelists via App Debug</h2>
+<p>
+	 App Debug feature lets you make sure that all REST APIs of your applications in the project work as intended. It presents you with a friendly user interface to construct requests and read responses.&nbsp;You can create different requests to look at:
+</p>
+<ul>
+	<li>all configuration values available to the app&nbsp;</li>
+	<li>and specified override values&nbsp;</li>
+	<li>or one particular kye value.&nbsp;</li>
+</ul>
+<p>
+	 All restricting settings, such as Namespace and IP whitelists, IP blacklist, and HTTP referrers are included in App Debug testing. For example, if you use HTTP referrers and Ajustee URL is not in the list, the correct expected response to a test call is an Error.&nbsp;
+</p>
+<dl>
+	<dt>
+	<h5> 1. Open App Debug page&nbsp;</h5>
+	</dt>
+	<dd>
+	<p>
+		 There are two ways to access it:
+	</p>
+	<ul>
+		<li>Either click <strong>Projects</strong>&nbsp;in the left navigation menu,&nbsp;select <strong>the project&nbsp;you need</strong> from the expanded list, choose&nbsp;the <strong>App Debug tab</strong> in the project submenu;
+            <div class="box">
+				<span class="image fit"><img src="images/app4.png" alt="" /></span>
+				</div>
+		</li>
+		<li>Or click the app in the grid of the <strong>Application page </strong>to see the <strong>Key details panel</strong> on the right. A <strong>Test button</strong> is at the bottom of the panel. On the App Debug tab, environment and application are predefined for you, so skip steps 2 and 3.
+            <div class="box">
+				<span class="image fit"><img src="images/app5.png" alt="" /></span>
+				</div>
+		</li>
+	</ul>
+	</dd>
+	<dl>
+		<dt>
+		<h5>2. Choose environment</h5> 
+		</dt>
+		<dd>
+		<p>
+			 Use the " 
+			<strong>Select environment</strong>" filter on the top of the page.
+		</p>
+            <div class="box">
+				<span class="image fit"><img src="images/app6.png" alt="" /></span>
+				</div>
+		</dd>
+		<dl>
+			<dt>
+			<h5>3. Specify application</h5> 
+			</dt>
+			<dd>
+			<p>
+				 Pick one from the dropdown list of available apps in this env.
+			</p>
+                <div class="box">
+				<span class="image fit"><img src="images/app7.png" alt="" /></span>
+				</div>
+			</dd>
+			<dt>
+			<h5>4. Specify what values should be requested in the test call click "Get the keys" button</h5>
+			</dt>
+			<dd>
+			<p>
+				 It is possible to receive all configuration values available to the app, specified override values or one particular kye value. 
+			</p>
+			<ul>
+				<li><strong>All configuration keys values<br>
+				</strong><br>
+				 This is a default flow, no extra settings are necessary, just click the&nbsp;"Get the keys" button and receive the response on the right part of the screen. 
+				<br>
+				<br>
+				<strong>Note</strong>: If the environment value is not specified for a key, the response will contain its default project value. If Namespace Whitelist restricts Application access, then a response will contain only key values from the list.
+                    <div class="box">
+								<span class="image fit"><img src="images/app8.png" alt="" /></span>
+								</div>
+				</li>
+				<li><strong>Particular override values<br>
+				</strong><br>
+				<strong>Note</strong>: First, override should be created for the env, then override value should be assigned to the configuration key. Learn how to do it in the "Creating overrides" instruction. Once those steps are completed you can run the following test.<br>
+				<br>
+				 To get an override value, specify extra parameters for the request: 
+				<br>
+				<br>
+				 A. 
+				<strong> Header field</strong>&nbsp;requires the <em>property</em> assigned to the override when it was created.<br>
+				 B. 
+				<strong> Value field&nbsp;</strong>requires the<strong>&nbsp;</strong><em>string value</em>&nbsp;assigned to the override when it was created.<br>
+				 C. Click the " 
+				<strong>Get the keys</strong>" button.<br>
+				<br>
+				 In the screenshot example, the response contains override value "40" for configuration "FeatureOne/Numeric property". It differs from the previous test&nbsp;screenshot with default request settings, where the test result shows environment or default values. 
+				<br>
+				<br>
+				 " 
+				<strong>Add a header</strong>"<strong> button</strong>&nbsp;allows you to make as many extra parameters for override values request as you need.<br>
+                    <div class="box">
+								<span class="image fit"><img src="images/app9.png" alt="" /></span>
+								</div>
+				</li>
+				<li><strong>Particular configuration key value<br>
+				</strong><br>
+				 If you need only one element in the response, fill in the 
+				<strong>Path</strong><strong> field</strong> and click the&nbsp;"<strong>Get the key</strong>s" button.<br>
+				 The required format is the key path - all the namespaces and the name of the configuration. For example UI/FeatureOne/Title.
+                    <div class="box">
+								<span class="image fit"><img src="images/app10.png" alt="" /></span>
+								</div>
+				</li>
+			</ul>
+			</dd>
+			<dl>
+				<dt>
+				<h5>5. View test results</h5> 
+				</dt>
+				<dd>
+				<p>
+					 There are two possible outcomes:
+				</p>
+				<ul>
+					<li><strong>Error response</strong>. Status codes are not provided via UI. <strong>Note</strong>: When your request does not fit such restrictions as IP whitelists or blacklist, and HTTP referrers, the correct expected result is an "error".</li>
+					<li><strong>Data response</strong> is displayed on the right part of the screen. There is not only UI Table view, but also Raw view in JSON format.
+                        <div class="box">
+								<span class="image fit"><img src="images/app11.png" alt="" /></span>
+								</div>
+					</li>
+				</ul>
+				</dd>
+			</dl>
+			<h2 id="app6">Editing Application</h2>
+			<p>
+				 With editing function, you can make changes in:
+			</p>
+			<ul>
+				<li>Application name </li>
+				<li>"Modify values" fearute setting&nbsp; </li>
+				<li>Whitelist restrictions&nbsp;</li>
+			</ul>
+			<ol>
+				<li>Open the 
+				<strong> Application tab</strong>&nbsp;of the Project.&nbsp;</li>
+				<li>
+				In the grid&nbsp; 
+				<strong>click the app </strong>you are about to edit.&nbsp;</li>
+				<li>The&nbsp; 
+				<strong>App details panel</strong>&nbsp;is displayed on the right with the&nbsp; 
+				<strong>Edit button</strong>&nbsp;on the top. 
+                <div class="box">
+								<span class="image fit"><img src="images/app12.png" alt="" /></span>
+				</div>
+				</li>
+            <li>
+				" 
+				<strong>Update&nbsp;</strong>
+				<strong>application for environment</strong>" form opens. Please refer to the guide 
+				<a href="#appform">"Fill in Create application for environment form"</a> above in this document for the details on editing the fields.&nbsp;
+                    <div class="box">
+								<span class="image fit"><img src="images/app13.png" alt="" /></span>
+								</div>
+				</li>
+				<li>Click the " 
+				<strong>Update+</strong>" button at the bottom of the pop-up to save the changes.&nbsp;</li>
+        </ol>
+			<p>
+				 The record about the app editing is made in the Project Audit log.
+			</p>
+            <hr>
+			<h2 id="app7">Deleting Application </h2>
+			<ol>
+				<li>
+				Open <strong>Application tab</strong>&nbsp;of the Project.&nbsp; 
+				</li>
+				<li>
+				In the grid&nbsp;click the app&nbsp;you are about to edit. 
+				</li>
+				<li>
+				The <strong>App details panel</strong>&nbsp;is displayed on the right. Click the "<strong>Delete application</strong>" button in its&nbsp;downright corner.&nbsp;No confirmation&nbsp;is required. 
+				</li>
+			</ol>
+            <div class="box">
+				<span class="image fit"><img src="images/app14.png" alt="" /></span>
+				</div>
+			<p>
+				 Once&nbsp;an application is deleted it is not displayed in&nbsp;the grid. The change is&nbsp;recorded in the Project Audit log.&nbsp;
+			</p>
+			<p>
+				 Bulk items deletion is not available.
+			</p>
+		</dl>
+	</dl>
+</dl>
+                </div>
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p> 03113, Lagerna Street #40, Kyiv, Ukraine</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>maria.abyzova@gmail.com</p>
+							</section>
+							<section>
+								<h3>Skype</h3>
+								<p>zetapegasi</p>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy;  Maria Abyzova</li><li>Design: HTML5 UP</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

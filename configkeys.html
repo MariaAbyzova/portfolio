@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Portfolio by Maria Abyzova</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">all samples</a></li>
+							<li><a href="longread.html">longread</a></li>
+                            <li><a href="application.html">How to</a></li>
+                            <li class="active"><a href="configkeys.html">Guide</a></li>
+                            <li><a href="user_guide.html">integration</a></li>
+                            <li><a href="user_manual.html">Q&amp;A</a></li>
+                            <li><a href="user_documentation.html">user doc</a></li>
+                            <li><a href="blogpost.html">blogpost</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>How to create <br> update and delete <br> configuration keys</h1>
+								</header>
+                                <!-- Box -->
+									<div class="box">
+                        <p>Find out what is a configuration key. Get guidance in basic actions with keys, such as creating, editing, sorting, deleting. The article explains the idea of configuration keys, as well as the concept of namespaces and shows how handy this format is. Check out what data types are the most effective for the different key values. Learn how to set default, environment and override values in Ajustee system.</p>
+                                    </div>    
+<p>
+	<strong>IN THIS ARTICLE</strong>
+</p>
+<ul>
+	<li><a href="#editing">Configuration key</a></li>
+	<li><a href="#editing1">How to create a configuration key</a></li>
+	<li><a href="#editing2">Updating default, environment, override key values</a></li>
+	<li><a href="#editing3">Searching and sorting keys</a></li>
+	<li><a href="#editing4">Deleting configuration key</a></li>
+</ul>
+<p>
+	<strong>Rights</strong>: Admin, PowerUser can create, edit, and delete keys. All roles can sort and search keys.
+</p>
+<h2 id="editing">Configuration key</h2>
+<p>
+	 In Ajustee system onfiguration keys are the specific settings of your product. It can be anything. For example, some of them make user interface elements of a product configurable, like colors or font sizes. Others manage functions or business logic. A feature flag that enables or disables functionality during runtime is a configuration as well. Each configuration key has a unique name, certain datatype, default key value, and can have specified environment and override values. The number of configuration keys within the project is unlimited.
+</p>
+<div class="box">
+<span class="image fit"><img src="images/keys1.png" alt="" /></span>
+    </div>
+<h2 id="editing1">How to create a configuration key</h2>
+<dl>
+	<dt>
+        <h5>1. Open configuration keys tab and click the "Add new configuration key" button</h5>
+	</dt>
+	<dd>Select <strong>Projects</strong> in the left navigation menu. Choose <strong>your product</strong> from the expanded list. Its sub-menu gets displayed with the <strong>Configuration tab</strong> open. The grid might be empty at the beginning. Click the "<strong>Add new configuration key</strong>" button in the top right corner. 
+        <div class="box">
+        <span class="image fit"><img src="images/keys2.png" alt="" /></span>
+        </div>
+	</dd>	
+	<dt>
+        <h5>2. Fill in the "Create configuration key" form</h5>
+	</dt>
+	<dd>
+	<div class="box">
+        <span class="image fit"><img src="images/keys3.png" alt="" /></span>
+    </div>
+	<dl>
+		<dt>
+		A. Name a configuration key 
+		</dt>
+		<dd> Fill in the <strong>Key name</strong> field. The key name must be <strong>unique</strong> within a project. You can use:
+            <ul>
+            <li><strong>Aa-Zz</strong> letters,</li>
+            <li><strong>0-9</strong> numbers,</li> 
+            <li><strong>_-.~/</strong> symbols,</li>
+            <li>no spaces.</li>
+            </ul>
+            <blockquote>
+            <strong>The recommended format is Namespace/KeyName.</strong> Use the forward-slash “/” as a separator to nest the key into a lager layer of namespace and create a key path.
+            <br>Namespaces are useful to organize configuration settings. For example, they can belong to a product layer (UI, Business, Data) or a feature (FeatureOne, FeatureTwo, NewFeature).
+            <br>It is possible to give several namespaces to one key, as they can be nested into each other. For instance, UI/FeatureOne/FeatureName. Ajustee automatically extracts "UI" and "FeatureOne" as namespaces two levels deep and "FeatureName" as the key name.
+            <br>This format allows using "Namespace whitelist" feature which limits applications access to the subgroups of keys. Also, it helps to search by a namespace the keys that belong to one category.
+            </blockquote>
+            <p><strong>Note</strong>: Key name won't be editable after the key is created.
+            </p>
+        </dd>
+		<dt id="editing12">
+		B. Set the datatype for the key
+		</dt>
+		<dd> Choose one of the following data types from the drop-down list in the <strong>Type</strong> field:
+            <div class="box">
+                <span class="image fit"><img src="images/keys4.png" alt="" /></span>
+            </div>
+		<ul>
+			<li><strong>Integer</strong> - is preferable for numeric values rather than a string. Int type holds only whole numbers that can either be positive or negative and zero.&nbsp;</li>
+			<li><strong>String</strong> - an array of any UTF8 symbols. Often used for alphanumeric values and text.&nbsp;For example, applying string datatype you can set a color by color code, create a title, provide any sort of messages, apply non-integer numeric values and much more.&nbsp;This&nbsp;datatype is universal and useful if the value does not fit integer, boolean, date and time types. But string values require parsing on the client's side and therefore extra time for processing, unlike the rest of types.&nbsp;</li>
+			<li><strong>Secret </strong>- is basically a string type which is not available for view via user interface, unless in case of key editing. Hiding values work well for sensitive information, like access or API keys.</li>
+			<li><strong>Boolean</strong> - true or false value. For instance, it might be used for a feature flag setting to turn it on and off.</li>
+			<li><strong>Date</strong> - is handy for settings that refer to data stored in a date format. For example, it can be applied for a condition with a date of user registration, or configuration of a deadline for a certain form. Set the key value as MM/DD/YYYY. Click the calendar icon in a “Key value” box to get a visual calendar pop-up.</li>
+			<li><strong>DateTime</strong> - convenient to specify the time in addition to date. A valid&nbsp;format for the key value of this datatype is MM/DD/YYYY,&nbsp;12:00:00 AM.</li>
+		</ul>
+            <p><strong>Note:</strong> The key data type won't be editable after the key is created.</p>
+		</dd>
+		<dt>
+		C. Set the default value for the configuration key 
+		</dt>
+		<dd><strong>Default value</strong> is automatically applied by the system to each configuration request for every env except for the ones that are assigned with environment and/or override values. Thus, default is required but, has the least priority.
+            <p>Enter it in the "<strong>Key value</strong>" box. Value format is defined by key datatype.</p>
+        </dd>
+		<dt>
+		D. Set the environment value the configuration key
+		</dt>
+		<dd><strong>Environment value</strong> is applied by the system to each configuration request for a particular env instead of the default value except for the ones that are assigned with override values. Use it to meet the special needs of a certain env and adjust the configuration to business and development cycles. For example, the default value for RefreshInterval key is 24 hours, and it fits users’ needs, but it is too long for the Development team. That is why we assign 1 hour interval as Development environment value.
+            <br>Environment value is optional and can be set or deleted later.
+            <br>To set it click the <strong>Environment Name</strong>, put a <strong>flag</strong>, and next to it enter the value for the env.
+            <div class="box">
+                <span class="image fit"><img src="images/keys5.png" alt="" /></span>
+            </div>
+		</dd>
+    </dl>
+    </dd>
+		<dt>
+            <h5>3. Click the “Create+" button down the form</h5>
+		</dt>
+</dl>
+		<p>The new key has been created and now you can see it in the configuration keys grid. Configuration key creation record is made in the Project Audit log. It also may be viewed in Audit history on Key details panel.
+		</p>
+    <hr>
+		<h2 id="editing2">Updating default, environment, override key values</h2>
+    <ol>
+        <li>Get to the <b>Configuration</b> keys tab of the project.</li>
+        <li>In the grid, click the <b>key</b> you are about to update to open its details panel on the right.</li>
+        <li>Click the <strong>Edit button</strong> on the top of the panel.
+        <div class="box">
+                <span class="image fit"><img src="images/keys6.png" alt="" /></span>
+            </div>
+        </li>
+        <li>Edit values in the <strong>"Update configuration key"</strong> form.
+            <p>The key name and datatypes are not editable. The following key values can be edited only according to the set datatype format. Details of the datatype formats are described in the guide “<a href="#editing1">How to create a configuration key</a>” above, step 2B "<a href="#editing12">Set the datatype for the key</a>”.</p>
+            <div class="box">
+                <span class="image fit"><img src="images/keys7.png" alt="" /></span>
+            </div>
+            <p><strong>A.</strong> To edit a <strong>default value</strong> make changes in <strong>Key value</strong> field. This value can be updated, but never deleted.<br>
+                <strong>B.</strong> To create or edit an <strong>environment value</strong> click the <strong>env name</strong>, put a <strong>flag</strong> to enable the field, enter the value next to a flag. To delete it remove the flag.<br>
+                <strong>C.</strong> Before setting an <strong>override value</strong> it is necessary to create the override for a particular environment in the Override tab of the project. Follow the guide “How to create an override” for details. Once it is created, the flag for assigning override value becomes available in this form. Click on the <strong>env name</strong>, put a <strong>flag</strong>, enter the value next to a flag.  To delete it remove the flag. Override value has the highest priority.
+            </p>
+        </li>
+        <li> Click the "<strong>Update+</strong>" button down the form.</li>
+    </ol>
+    <p>Configuration key update record is made in the Project Audit log. All values assigned to the key can be viewed on Key details panel.</p>
+    <hr>
+    
+		<h2 id="editing3">Searching and sorting keys</h2>
+		<p>
+			<strong>Searching by key name or namespace&nbsp;</strong>helps navigate the grid with numerous keys. The <b>Search field</b> is in the top right corner above the grid.
+		</p>
+		 <div class="box">
+                <span class="image fit"><img src="images/keys8.png" alt="" /></span>
+            </div>
+			<strong>Sorting by environmеnt </strong>shows&nbsp;which keys in the grid have specified environment values for a certain env.&nbsp;To view the values for one env use "<strong>Select Environment</strong>" filter above the grid. Choose the env from the dropdown list of the project instances.&nbsp;Pay attention to the icons in the grid:
+		<ul>
+			<li><strong>PD</strong> - stands for project default. It means this key has a project Default key value in this environment.&nbsp;</li>
+			<li><strong>ED</strong> - stands for environment default. This key has a specified&nbsp;Environment value for this instance. To see the difference between default and environment values open the details panel by clicking the key in the grid.</li>
+		</ul>
+		 <div class="box">
+                <span class="image fit"><img src="images/keys9.png" alt="" /></span>
+            </div>
+		<h2 id="editing4">Deleting configuration key</h2>
+    <ol>
+        <li>Open the <b>Configuration</b> keys tab of the Project.</li>
+        <li>In the grid, click the one you are about to delete.</li>
+        <li>The Key details panel is displayed on the right. Click the "<strong>Delete config key</strong>" button in the downright corner.
+            <div class="box">
+                <span class="image fit"><img src="images/keys10.png" alt="" /></span>
+            </div>
+        </li>
+        <li>The final confirmation is required on the pop-up.</li>
+    </ol>
+    <p>After the confirmation, the key is deleted. It is not displayed in the grid anymore. Meanwhile, key audit history is not deleted and is available in the Audit log tab of the Project menu.</p>
+                                <p>Bulk configuration keys deletion is not available</p>
+                                </div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p> 03113, Lagerna Street #40, Kyiv, Ukraine</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>maria.abyzova@gmail.com</p>
+							</section>
+							<section>
+								<h3>Skype</h3>
+								<p>zetapegasi</p>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy;  Maria Abyzova</li><li>Design: HTML5 UP</li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
